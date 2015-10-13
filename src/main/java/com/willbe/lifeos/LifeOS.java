@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -27,10 +28,10 @@ import javax.servlet.ServletContextListener;
  *
  * @author Vitalii Siryi
  */
-@Configuration
 @ComponentScan
 @EnableAutoConfiguration
 @SpringBootApplication
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class LifeOS extends SpringBootServletInitializer implements CommandLineRunner {
 
     @Autowired
@@ -70,43 +71,6 @@ public class LifeOS extends SpringBootServletInitializer implements CommandLineR
             }
 
         };
-    }
-
-    @Bean
-    public ApplicationSecurity applicationSecurity() {
-        return new ApplicationSecurity();
-    }
-
-    @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-    protected static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
-
-        @Autowired
-        private SecurityProperties security;
-
-        @Autowired
-        private UserRepository userRepository;
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable()
-                    .authorizeRequests()
-                        .antMatchers("/resources/**").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                    .formLogin()
-                    .loginPage("/login").defaultSuccessUrl("/main").failureUrl("/forbidden").permitAll()
-                        .and()
-                    .rememberMe();
-
-        }
-
-        @Override
-        public void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(new UserServiceImpl(userRepository));
-        }
-
-
-
     }
 
 }

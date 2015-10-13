@@ -20,6 +20,7 @@ public class UserModel {
 
     private String name;
     private String password;
+    private String description;
 
     public UserModel() {
     }
@@ -56,5 +57,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

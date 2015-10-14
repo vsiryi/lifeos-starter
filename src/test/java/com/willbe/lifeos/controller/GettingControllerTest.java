@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.containsString;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { LifeOS.class })
-public class UserLoginControllerTest {
+public class GettingControllerTest {
 
     @Autowired
     private WebApplicationContext wac;

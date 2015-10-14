@@ -28,7 +28,7 @@ public class LifeConfiguration {
     }
 
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-    protected static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
+    public static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private SecurityProperties security;
@@ -40,7 +40,7 @@ public class LifeConfiguration {
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/resources/**").permitAll()
+                    .antMatchers("/hello/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()

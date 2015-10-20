@@ -3,7 +3,7 @@ package com.willbe.lifeos.controller;
 import com.willbe.lifeos.message.Greeting;
 import com.willbe.lifeos.message.HelloMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 public class MessagesController {
 
     @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
+    @SendToUser("/topic/greetings")
     public Greeting greeting(HelloMessage message) throws Exception {
         Thread.sleep(3000); // simulated delay
         return new Greeting("Hello, " + message.getName() + "!");

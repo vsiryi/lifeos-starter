@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
-    @RequestMapping("/hello/{name}")
+    @RequestMapping("/rest/{name}")
     String hello(@PathVariable String name) {
         return "Hello, " + name + "!";
     }

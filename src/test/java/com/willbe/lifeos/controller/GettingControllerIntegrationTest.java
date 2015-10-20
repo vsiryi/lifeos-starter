@@ -46,7 +46,7 @@ public class GettingControllerIntegrationTest {
 
     @Test
     public void testHello() throws Exception {
-        String responce = doCall("http://localhost:8081/hello/darling");
+        String responce = doCall("http://localhost:8081/rest/darling");
         assertThat(responce, containsString("Hello, darling!"));
     }
 

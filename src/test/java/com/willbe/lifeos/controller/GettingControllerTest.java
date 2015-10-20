@@ -38,7 +38,7 @@ public class GettingControllerTest {
 
     @Test
     public void testHome() throws Exception {
-        this.mockMvc.perform(get("/hello/darling")).andExpect(status().isOk())
+        this.mockMvc.perform(get("/rest/darling")).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello, darling!")));
     }
 
